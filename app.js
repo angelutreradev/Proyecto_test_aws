@@ -5,10 +5,12 @@ const helmet = require('helmet');
 var compression = require('compression');
 require('dotenv').config();
 const {v4: uuidv4} = require('uuid');
+const cors = require('cors');
 
 const app = express();
-app.use(helmet({contentSecurityPolicy: false}));  // Ayuda a proteger aplicaciones Express
+app.use(helmet()); // Ayuda a proteger aplicaciones Express
 app.use(compression());
+app.use(cors()); // Habilitar CORS
 
 // Servidor HTTP
 const serverHttp = http.createServer(app);
@@ -19,12 +21,12 @@ app.use(express.static('./public'));
 
 // API
 app.get('/api/get-uuid', function(req, res) {
-    res.send(uuidv4())
+    res.send(uuidv4());
 });
 
 // 404
 app.get('*', function(req, res) {
-    res.status(404).send('Error 404 - Recurso no encontrado')
+    res.status(404).send('Error 404 - Recurso no encontrado');
 });
 
 
