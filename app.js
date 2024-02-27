@@ -24,7 +24,7 @@ app.get('/api/get-uuid', function(req, res) {
     res.send(uuidv4());
 });
 
-// 404
+// 404 por defecto
 app.get('*', function(req, res) {
     res.status(404).send('Error 404 - Recurso no encontrado');
 });
